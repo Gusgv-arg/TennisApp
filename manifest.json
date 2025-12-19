@@ -1,0 +1,19 @@
+
+{
+  "name": "TennisPro AI Scorer",
+  "short_name": "TennisPro",
+  "description": "Analizador de técnica de tenis profesional con IA",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#1a3a17",
+  "theme_color": "#2d5a27",
+  "orientation": "portrait",
+  "icons": [
+    {
+      "src": "https://cdn-icons-png.flaticon.com/512/2862/2862834.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}

@@ -1,0 +1,7 @@
+{
+  "name": "TennisPro AI Scorer",
+  "description": "A sophisticated tennis technique analyzer that uses Gemini 3 Pro to score your strokes and provide expert coaching tips from video uploads.",
+  "requestFramePermissions": [
+    "camera"
+  ]
+}
