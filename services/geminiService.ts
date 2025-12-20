@@ -43,13 +43,12 @@ export const analyzeVideoFrames = async (frames: string[], expectedStroke: strin
 
   try {
     const response = await ai.models.generateContent({
-      model: "gemini-3-pro-preview",
+      model: "gemini-flash-latest",
       contents: {
         parts: [...imageParts, { text: userPrompt }]
       },
       config: {
         systemInstruction: PROMPT_SYSTEM,
-        thinkingConfig: { thinkingBudget: 8000 }, // Mayor presupuesto para razonamiento profundo
         responseMimeType: "application/json",
         responseSchema: {
           type: Type.OBJECT,
@@ -91,9 +90,10 @@ export const analyzeVideoFrames = async (frames: string[], expectedStroke: strin
     });
 
     return JSON.parse(response.text || '{}') as EnhancedAnalysisResult;
-  } catch (error) {
-    console.error("Gemini Error:", error);
-    throw new Error("Error en el análisis. Intenta con un video donde el golpe se vea de cuerpo completo.");
+  } catch (error: any) {
+    console.error("Gemini Error Detail:", error);
+    const errorMessage = error.message || JSON.stringify(error);
+    throw new Error(`Error técnico: ${errorMessage}. Intenta con otro video.`);
   }
 };
 
