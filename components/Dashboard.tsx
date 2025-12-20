@@ -1,8 +1,8 @@
 
 import React from 'react';
 import { AnalysisResult } from '../types';
-import { 
-  BarChart, Bar, XAxis, YAxis, Tooltip, Cell, ResponsiveContainer
+import {
+  BarChart, Bar, XAxis, YAxis, Tooltip, Cell, ResponsiveContainer, LabelList
 } from 'recharts';
 
 interface EnhancedAnalysisResult extends AnalysisResult {
@@ -64,15 +64,16 @@ const Dashboard: React.FC<Props> = ({ result, videoUrl, onReset }) => {
               "{result.detectedStrokeJustification}"
             </p>
           </div>
-          
+
           <div className="mt-8">
             <h3 className="text-sm font-black text-gray-400 uppercase tracking-widest mb-4">Desglose de Habilidades</h3>
             <div className="h-48 w-full">
               <ResponsiveContainer width="100%" height="100%">
                 <BarChart data={result.breakdown} layout="vertical">
                   <XAxis type="number" domain={[0, 100]} hide />
-                  <YAxis dataKey="label" type="category" width={110} axisLine={false} tickLine={false} style={{fontSize: '10px', fontWeight: 'bold'}} />
+                  <YAxis dataKey="label" type="category" width={110} axisLine={false} tickLine={false} style={{ fontSize: '10px', fontWeight: 'bold' }} />
                   <Bar dataKey="score" radius={[0, 10, 10, 0]} barSize={20}>
+                    <LabelList dataKey="score" position="right" style={{ fill: '#6b7280', fontSize: '10px', fontWeight: 'bold' }} />
                     {result.breakdown.map((entry, index) => (
                       <Cell key={`cell-${index}`} fill={getScoreColor(entry.score)} />
                     ))}
@@ -109,9 +110,9 @@ const Dashboard: React.FC<Props> = ({ result, videoUrl, onReset }) => {
         </div>
 
         <div className="space-y-6">
-           <div className="bg-green-600 text-white p-8 rounded-[2rem] shadow-xl relative overflow-hidden">
+          <div className="bg-green-600 text-white p-8 rounded-[2rem] shadow-xl relative overflow-hidden">
             <div className="absolute top-0 right-0 p-4 opacity-10">
-              <svg width="120" height="120" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"/><circle cx="12" cy="12" r="5"/></svg>
+              <svg width="120" height="120" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z" /><circle cx="12" cy="12" r="5" /></svg>
             </div>
             <h3 className="text-xl font-black mb-6 flex items-center">
               <span className="mr-3">🎯</span> Plan de Entrenamiento
@@ -136,7 +137,7 @@ const Dashboard: React.FC<Props> = ({ result, videoUrl, onReset }) => {
       </div>
 
       <div className="flex justify-center pb-12">
-        <button 
+        <button
           onClick={onReset}
           className="px-10 py-4 bg-gray-900 text-white font-black rounded-full hover:bg-black transition-all shadow-xl hover:scale-105 active:scale-95 uppercase tracking-widest text-xs"
         >

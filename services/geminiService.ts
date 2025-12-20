@@ -18,6 +18,11 @@ PROTOCOLO DE ANÁLISIS (Sigue estos pasos estrictamente):
 3. VALIDACIÓN DE INTENCIÓN: El usuario te dirá qué intentaba hacer. Si ves que es otra cosa, explica por qué (ej: "Aunque indicaste Saque, el movimiento es de Drive porque el impacto es lateral y no sobre la cabeza").
 4. EVALUACIÓN: Puntúa basándote en la cadena cinética (transferencia de energía desde los pies hasta la raqueta).
 
+IMPORTANTE SOBRE PUNTUACIÓN:
+- Todos los puntajes (overallScore y breakdown) deben ser números enteros del 0 al 100.
+- 0 es pésimo, 100 es perfección técnica de nivel ATP/WTA.
+- Sé crítico pero justo.
+
 Responde SIEMPRE en formato JSON y en ESPAÑOL.`;
 
 export const analyzeVideoFrames = async (frames: string[], expectedStroke: string): Promise<EnhancedAnalysisResult> => {
